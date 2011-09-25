@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  postid: 1
+  uid: 1
+  time: 2011-09-18 16:21:24
+  post: MyText
+  root: 1
+  votes: 1
+  rel: 1.5
+
+two:
+  postid: 1
+  uid: 1
+  time: 2011-09-18 16:21:24
+  post: MyText
+  root: 1
+  votes: 1
+  rel: 1.5
