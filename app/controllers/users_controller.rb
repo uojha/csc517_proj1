@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+
+  before_filter :login_required, :only => :my_account
+
   def index
     @users = User.all
 
@@ -8,6 +11,30 @@ class UsersController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @users }
     end
+  end
+
+  def prLogin
+      @user = User.new
+      @user.uname = params[:username]
+  end
+
+  def login
+      if user = User.authenticate(params[:user])
+        session[:id] = user.id # Remember the user's id during this session
+        redirect_to session[:return_to] || '/'
+      else
+        flash[:error] = 'Invalid login.'
+        redirect_to :action => 'prLogin', :username => params[:user][:username]
+      end
+    end
+
+    def logout
+      reset_session
+      flash[:message] = 'Logged out.'
+      redirect_to :action => 'prLogin'
+    end
+  def my_account
+
   end
 
   # GET /users/1

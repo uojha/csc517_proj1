@@ -2,13 +2,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    numActive = 6
+    @posts = Post.order("votes DESC").limit(numActive)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
     end
   end
+
 
   # GET /posts/1
   # GET /posts/1.json
